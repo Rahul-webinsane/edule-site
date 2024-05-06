@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +7,29 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'blog-app';
+
+  isMenuScrolled:boolean=false;
+  isSideMenu:boolean=false;
+
+
+  @HostListener('window:scroll',['$event'])
+
+  scrollCheck(){
+    if(window.scrollY > 100){
+      this.isMenuScrolled = true;
+    }else{
+      this.isMenuScrolled = false;
+    }
+  }
+
+  openSideMenu(){
+    this.isSideMenu = true;
+  }
+
+  closeSideMenu(){
+    this.isSideMenu = false;
+  }
+  scrollTop(){
+    document.body.scrollIntoView({behavior:'smooth'});
+  }
 }
